@@ -1,3 +1,4 @@
+const { extractFragmentReplacements } = require('prisma-binding')
 const { Query } = require('./Query')
 const { Subscription } = require('./Subscription')
 const { auth } = require('./Mutation/auth')
@@ -5,7 +6,7 @@ const { post } = require('./Mutation/post')
 const { AuthPayload } = require('./AuthPayload')
 const { User } = require('./User')
 
-module.exports = {
+const resolvers = {
   Query,
   Mutation: {
     ...auth,
@@ -15,3 +16,7 @@ module.exports = {
   AuthPayload,
   User
 }
+
+const fragmentReplacements = extractFragmentReplacements(resolvers)
+
+module.exports = { resolvers, fragmentReplacements}
