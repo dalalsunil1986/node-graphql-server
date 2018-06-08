@@ -6,12 +6,7 @@ const User = {
         resolve: async (parent, args, ctx, info) => {
             try {
                 const userId = getUserId(ctx)
-
-                if (parent.id === userId) {
-                    return parent.email
-                } else {
-                    return null
-                }
+                return parent.id === userId ? parent.email : null
             } catch (e) {
                 return null
             }
