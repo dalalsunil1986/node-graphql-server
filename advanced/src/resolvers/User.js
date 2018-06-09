@@ -12,6 +12,12 @@ const User = {
             }
         },
     },
+    posts: {
+        fragment: `fragment UserId on User { id }`,
+        resolve: async (parent, args, ctx, info) => {
+            return parent.posts.filter((post) => post.isPublished)
+        },
+    },
 }
 
 module.exports = { User }
